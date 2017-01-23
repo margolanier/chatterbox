@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Chats</title>
+		<meta charset="UTF-8"> 
+		<script src="http://underscorejs.org/underscore.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="http://backbonejs.org/backbone.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+		<script type="x-mustache-template" id="chat-template">
+			<p>From: {{ from }}</p>
+			<p>Timestamp: {{ added }}</p>
+			<p>Message: {{ message }}</p>
+			<button class="remove">Remove</button>
+		</script>
+		<script src="app.js"></script>
+		
+	</head>
+	
+	<body>
+		<h1>I'm like hey what's up hello</h1>
+		<section id="add-message">
+			<input type="text" id="new-user">
+			<input type="text" id="new-message" placeholder="Wuddup">
+			<button id="send">Send</button>
+		</section>
+		
+		<section id="chats">
+			<p>From:<span class="from"></span></p>
+			<p>Message: <span class="message"></span></p>
+		</section>
+	</body>
+</html>
