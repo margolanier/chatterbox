@@ -4,11 +4,6 @@ module.exports = Backbone.View.extend({
 		this.model.on('change', this.render, this);
 		this.model.on('add', this.render, this);
 		this.model.on('remove', this.render, this);
-		
-		var self = this;
-		setInterval(function() {
-			self.collection.fetch();
-		}, 30000);
 	},
 	
 	events: {
@@ -22,7 +17,6 @@ module.exports = Backbone.View.extend({
 	},
 	
 	render() {
-		console.log('rendering');
 		const parent = this.el.querySelector('#chats ul');
 		parent.innerHTML = '';
 		
@@ -30,7 +24,6 @@ module.exports = Backbone.View.extend({
 		
 		for (let i=0; i<this.model.models.length; i++) {
 			const chat = this.model.models[i];
-			console.log(chat);
 			
 			const li = document.createElement('li');
 			li.innerHTML = Mustache.render(
@@ -42,13 +35,13 @@ module.exports = Backbone.View.extend({
 				}
 			);
 			
-			/*const remove = li.querySelector('.remove');
+			const remove = li.querySelector('.remove');
 			remove.addEventListener('click', () => {
 				console.log('removed ' + event.get('name'));
 				this.model.remove(event);
 				// ^ if you don't use an arrow function here,
 				// you need to use self.model instead of this.model
-			});*/
+			});
 			
 			parent.appendChild(li);
 		}
