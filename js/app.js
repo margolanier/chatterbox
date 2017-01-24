@@ -1,5 +1,6 @@
 const ChatList = require('./models/chat-list');
 const ChatView = require('./views/chat');
+require('./ajax.js');
 
 window.addEventListener('load', () => {
 	const list = new ChatList();

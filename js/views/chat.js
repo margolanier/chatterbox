@@ -13,7 +13,7 @@ module.exports = Backbone.View.extend({
 	createMessage() {
 		const user = this.el.querySelector('#new-user').value;
 		const message = this.el.querySelector('#new-message').value;
-		this.model.addChat(user, message);
+		this.model.postChat(user, message);
 	},
 	
 	render() {

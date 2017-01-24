@@ -1,7 +1,8 @@
 module.exports = Backbone.Model.extend({
 	defaults: {
+		id: null,
+		timestamp: null,
 		user: 'User',
-		timestamp: '', //new Date();
 		message: 'Message',
 	},
 });
