@@ -3,7 +3,12 @@ module.exports = Backbone.View.extend({
 	initialize() {
 		this.model.on('change', this.render, this);
 		this.model.on('add', this.render, this);
-		//this.model.on('remove', this.render, this);
+		this.model.on('remove', this.render, this);
+		
+		var self = this;
+		setInterval(function() {
+			self.collection.fetch();
+		}, 30000);
 	},
 	
 	events: {
@@ -17,21 +22,23 @@ module.exports = Backbone.View.extend({
 	},
 	
 	render() {
-		const parent = this.el.querySelector('#chats');
+		console.log('rendering');
+		const parent = this.el.querySelector('#chats ul');
 		parent.innerHTML = '';
 		
 		const template = document.querySelector('#chat-template');
 		
 		for (let i=0; i<this.model.models.length; i++) {
 			const chat = this.model.models[i];
-			const li = document.createElement('li');
+			console.log(chat);
 			
+			const li = document.createElement('li');
 			li.innerHTML = Mustache.render(
 				template.innerHTML,
 				{
-					from: chat.get('user'),
+					user: chat.get('user'),
 					message: chat.get('message'),
-					added: chat.get('timestamp'),
+					timestamp: chat.get('timestamp'),
 				}
 			);
 			

@@ -10,5 +10,9 @@ window.addEventListener('load', () => {
 		model: list,
 	});
 	
-	view.render();
+	view.model.fetch();
+	
+	setInterval(function() {
+		view.model.fetch();
+	}, 3000);
 });

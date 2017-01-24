@@ -9,8 +9,8 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
 		<script type="x-mustache-template" id="chat-template">
-			<p>From: {{ from }}</p>
-			<p>Timestamp: {{ added }}</p>
+			<p>From: {{ user }}</p>
+			<p>Timestamp: {{ timestamp }}</p>
 			<p>Message: {{ message }}</p>
 			<button class="remove">Remove</button>
 		</script>
@@ -21,14 +21,13 @@
 	<body>
 		<h1>I'm like "hey, what's up, hello"</h1>
 		<section id="add-message">
-			<input type="text" id="new-user">
-			<input type="text" id="new-message" placeholder="Wuddup">
+			<input type="text" id="new-user" placeholder="Your name">
+			<input type="text" id="new-message" placeholder="Say things here">
 			<button id="send">Send</button>
 		</section>
 		
 		<section id="chats">
-			<p>From:<span class="from"></span></p>
-			<p>Message: <span class="message"></span></p>
+			<ul></ul>
 		</section>
 	</body>
 </html>

@@ -1,5 +1,4 @@
-//const ChatList = require('./models/chat-list');
-const ChatModel = require('./models/chat');
+const ChatList = require('./models/chat-list');
 
 module.exports = Backbone.sync = function (method, model) {
 	// Get chats
@@ -10,9 +9,12 @@ module.exports = Backbone.sync = function (method, model) {
 			const response = JSON.parse(req.responseText);
 			const chatList = response.chats;
 			
-			console.log('getting');
-			console.log(chatList);
-			
+			// For each chat object in the ajax response,
+			// send info to be parsed as a new chat model
+			let list = new ChatList();
+			for (let i=0; i<response.chats.length; i++) {
+				list.parseChat(response.chats[i]);
+			}
 			
 			model.trigger('change');
 		});
@@ -28,20 +30,8 @@ module.exports = Backbone.sync = function (method, model) {
 			const response = JSON.parse(req.responseText);
 			const chatList = response.chats;
 			
-			console.log(chatList);
-			
-			// Make a new Chat Model for each of the responses
-			for (let i=0; i<response.chats.length; i++) {
-				let chat = new ChatModel();
-				chat.set('id', chatList.id);
-				chat.set('timestamp', chatList.added);
-				chat.set('user', chatList.from);
-				chat.set('message', chatList.message);
-				
-				model.add(chat);
-			}
-			
-			model.trigger('change');
+			// After posting new chat, fetch all chats
+			model.collection.fetch();
 		});
 		
 		const body = JSON.stringify({
