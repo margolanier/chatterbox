@@ -13,9 +13,6 @@ $border-color: #ccc;
 $heading-txt: 'Bungee Shade', cursive;
 $primary-txt: 'Abel', sans-serif;
 
-$headerHeight: 60px;
-$footerHeight: 85px;
-
 html, body {
 	margin: 0;
 	position: relative;
@@ -28,21 +25,25 @@ p {
 	margin: .3rem 0;
 }
 
+input, button {
+	font-family: $primary-txt;
+}
+
 header {
 	background-color: $header-color;
 	
 	#top-bar {
 		@include grid-row();
-		height: $headerHeight; // keeps set height
+		height: 60px; // keeps set height
 		
 		h1 {
 			@include grid-column(12);
 			font-family: $heading-txt;
 			font-size: 2.5rem;
 			color: white;
-			line-height: 2.7rem;
-			margin-bottom: 0.75rem;
 			margin-top: 0px;
+			margin-bottom: 0px;
+			line-height: 1.4;
 			text-align: center;
 
 			@include breakpoint($md-screen) {
@@ -62,8 +63,12 @@ header {
 		padding: 0;
 		list-style-type: none;
 		//height: calc(100% - $headerHeight - $footerHeight);
-		height: calc(100% - 145px);
+		height: calc(100% - 225px);
 		overflow-y: scroll;
+		
+		@include breakpoint($md-screen) {
+			height: calc(100% - 145px);
+		}
 		
 		li {
 			border-bottom: 2px solid #e6e6e6;
@@ -123,44 +128,53 @@ header {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	height: $footerHeight; // keeps set height
+	height: 165px; // keeps set height
 	padding: 5px 0;
+	
+	@include breakpoint($md-screen) {
+		height: 85px;
+	}
 	
 	#user-input {
 		@include grid-row();
 		margin: 0 auto;
 		
 		fieldset {
-			@include grid-column(4);
+			@include grid-column(12);
 			border: none;
-			//padding: 0 0 !important;
 			margin: 0;
 			
+			@include breakpoint($md-screen) {
+				@include grid-column(4);
+			}
+			
 			label {
-				display: block;
+				display: none;
 				font-weight: bold;
+			}
+			
+			@include breakpoint($md-screen) {
+				label {
+					display: block;
+				}
 			}
 			
 			input {
 				padding: 0 10px;
-				margin-bottom: 0px;
+				margin: 0px;
 				height: 35px;
 				width: 100%;
-
-				@include breakpoint($md-screen) {
-					margin: 0px;
-				}
 			}
 
 			button {
 				background-color: white;
 				line-height: 33px;
-				margin-top: 24px;
 				border: 1px solid $border-color;
 				width: 100%;
+				font-weight: bold;
 
 				@include breakpoint($md-screen) {
-					margin-right: 0px;
+					margin-top: 24px;
 				}
 			}
 		}

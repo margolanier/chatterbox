@@ -31,16 +31,12 @@ module.exports = Backbone.View.extend({
 				{
 					user: chat.get('user'),
 					message: chat.get('message'),
-					timestamp: chat.get('timestamp'),
 				}
 			);
 			
 			const remove = li.querySelector('.remove');
 			remove.addEventListener('click', () => {
-				console.log('removed ' + event.get('name'));
-				this.model.remove(event);
-				// ^ if you don't use an arrow function here,
-				// you need to use self.model instead of this.model
+				this.model.deleteChat(chat.get('id'));
 			});
 			
 			parent.appendChild(li);
