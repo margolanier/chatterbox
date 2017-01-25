@@ -10,6 +10,7 @@ module.exports = Backbone.Collection.extend({
 		chat.set('user', user);
 		chat.set('message', message);
 		
+		chat.collection = this;
 		chat.save();
 	},
 	
@@ -30,7 +31,10 @@ module.exports = Backbone.Collection.extend({
 		let matches = this.models.filter(function (model) {
 			return (model.get('id') === id);
 		});
-		matches[0].destroy();
+		
+		let match = matches[0];
+		this.remove(match);
+		match.destroy();
 	},
 	
 });

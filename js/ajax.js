@@ -45,7 +45,7 @@ module.exports = Backbone.sync = function (method, model) {
 		req.open('DELETE', 'http://api.queencityiron.com/chats');
 		req.addEventListener('load', function () {
 			// After deleting the chat, fetch all chats
-			model.fetch();
+			// model.collection.fetch();
 		});
 		
 		const body = JSON.stringify({
