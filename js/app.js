@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
 	
 	view.model.fetch();
 	
-	/*setInterval(function() {
+	setInterval(function() {
 		view.model.fetch();
-	}, 3000);*/
+	}, 3000);
 });

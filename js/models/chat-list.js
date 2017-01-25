@@ -10,7 +10,6 @@ module.exports = Backbone.Collection.extend({
 		chat.set('user', user);
 		chat.set('message', message);
 		
-		this.add(chat);
 		chat.save();
 	},
 	
@@ -28,13 +27,9 @@ module.exports = Backbone.Collection.extend({
 	
 	// Find the model that has matching id and delete it
 	deleteChat(id) {
-		console.log('deleting');
 		let matches = this.models.filter(function (model) {
 			return (model.get('id') === id);
 		});
-		console.log(matches);
-		console.log(matches[0].id);
-		
 		matches[0].destroy();
 	},
 	

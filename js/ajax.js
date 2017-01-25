@@ -27,9 +27,6 @@ module.exports = Backbone.sync = function (method, model) {
 		const req = new XMLHttpRequest();
 		req.open('POST', 'http://api.queencityiron.com/chats');
 		req.addEventListener('load', function () {
-			const response = JSON.parse(req.responseText);
-			const chatList = response.chats;
-			
 			// After posting new chat, fetch all chats
 			model.collection.fetch();
 		});
@@ -44,15 +41,11 @@ module.exports = Backbone.sync = function (method, model) {
 	
 	// Delete a chat
 	if (method === 'delete') {
-		console.log('asdfasfd');
 		const req = new XMLHttpRequest();
 		req.open('DELETE', 'http://api.queencityiron.com/chats');
 		req.addEventListener('load', function () {
-			const response = JSON.parse(req.responseText);
-			const chatList = response.chats;
-			
 			// After deleting the chat, fetch all chats
-			model.collection.fetch();
+			model.fetch();
 		});
 		
 		const body = JSON.stringify({
