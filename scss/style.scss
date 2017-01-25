@@ -2,3 +2,167 @@
 
 @include foundation-global-styles;
 @include foundation-grid;
+
+// breakpoint for tablet and up
+$md-screen: 768px;
+
+$header-color: #47B475;
+$primary-color: #498467;
+$secondary-color: #A6D3A0;
+$border-color: #ccc;
+$heading-txt: 'Bungee Shade', cursive;
+$primary-txt: 'Abel', sans-serif;
+
+$headerHeight: 60px;
+$footerHeight: 85px;
+
+html, body {
+	margin: 0;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	font-family: $primary-txt;
+}
+
+p {
+	margin: .3rem 0;
+}
+
+header {
+	background-color: $header-color;
+	
+	#top-bar {
+		@include grid-row();
+		height: $headerHeight; // keeps set height
+		
+		h1 {
+			@include grid-column(12);
+			font-family: $heading-txt;
+			font-size: 2.5rem;
+			color: white;
+			line-height: 2.7rem;
+			margin-bottom: 0.75rem;
+			margin-top: 0px;
+			text-align: center;
+
+			@include breakpoint($md-screen) {
+				margin-bottom: 0px;
+				line-height: 1.4;
+				text-align: left;
+			}
+		}
+	}
+}
+
+#chats {
+	height: 100%;
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		//height: calc(100% - $headerHeight - $footerHeight);
+		height: calc(100% - 145px);
+		overflow-y: scroll;
+		
+		li {
+			border-bottom: 2px solid #e6e6e6;
+    		padding: .5rem;
+			
+			.chat {
+				@include grid-row();
+				
+				p, button {
+					@include grid-column(12);
+				}
+				
+				.user {
+					font-weight: bold;
+					margin-right: 20px;
+				}
+				
+				.highlight {
+					background-color: #FFFB77;
+				}
+				
+				.emoji img {
+					width: 32px;
+					height: 32px;
+				}
+				
+				.image img {
+					max-width: 400px;
+				}
+				
+				button.remove {
+					display: inline;
+					float: right;
+					border: 1px solid $border-color;
+					height: 25px;
+					width: 25px;
+					border-radius: 50%;
+					padding: 0;
+				}
+			}
+		}
+		
+		li:hover, li:focus {
+			cursor: pointer;
+			background: #F5F5F5;
+		}
+		
+		li:last-child {
+			border-bottom: none;
+    		margin-bottom: 0;
+		}
+	}
+}
+
+#add-message {
+	background-color: $header-color;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: $footerHeight; // keeps set height
+	padding: 5px 0;
+	
+	#user-input {
+		@include grid-row();
+		margin: 0 auto;
+		
+		fieldset {
+			@include grid-column(4);
+			border: none;
+			//padding: 0 0 !important;
+			margin: 0;
+			
+			label {
+				display: block;
+				font-weight: bold;
+			}
+			
+			input {
+				padding: 0 10px;
+				margin-bottom: 0px;
+				height: 35px;
+				width: 100%;
+
+				@include breakpoint($md-screen) {
+					margin: 0px;
+				}
+			}
+
+			button {
+				background-color: white;
+				line-height: 33px;
+				margin-top: 24px;
+				border: 1px solid $border-color;
+				width: 100%;
+
+				@include breakpoint($md-screen) {
+					margin-right: 0px;
+				}
+			}
+		}
+	}
+}

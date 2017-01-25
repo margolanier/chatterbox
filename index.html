@@ -1,33 +1,61 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Chats</title>
-		<meta charset="UTF-8"> 
+		<title>Chatterbox</title>
+		<meta charset="UTF-8">
+		
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+		
 		<script src="http://underscorejs.org/underscore.js"></script>
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 		<script src="http://backbonejs.org/backbone.js"></script>
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
 		<script type="x-mustache-template" id="chat-template">
-			<p>From: {{ user }}</p>
-			<p>Timestamp: {{ timestamp }}</p>
-			<p>Message: {{ message }}</p>
-			<button class="remove">Remove</button>
+			<div class="chat">
+				<p><span class="user">{{ user }}:</span><span class="message">{{ message }}</span><button class="remove">x</button></p>
+			</div>
 		</script>
 		<script src="app.js"></script>
 		
 	</head>
 	
 	<body>
-		<h1>I'm like "hey, what's up, hello"</h1>
+		<header>
+			<section id="top-bar">
+				<h1>Chatterbox</h1>
+			</section>
+		</header>
+		
 		<section id="add-message">
-			<input type="text" id="new-user" placeholder="Your name">
-			<input type="text" id="new-message" placeholder="Say things here">
-			<button id="send">Send</button>
+			<div id="user-input">
+				<fieldset>
+					<label>From:</label>
+					<input type="text" id="new-user" placeholder="Fetty Wap">
+				</fieldset>
+				<fieldset>
+					<label>Message:</label>
+					<input type="text" id="new-message" placeholder="hey, what's up, hello">
+				</fieldset>
+				<fieldset>
+					<button id="send">Send</button>
+				</fieldset>
+			</div>
 		</section>
 		
 		<section id="chats">
 			<ul></ul>
+		</section>
+		
+		<section id="input-container">
+			<div id="user-input">
+				<input type="text" placeholder="Your Message Here" id="user-message">
+				<button id="send">Send</button>
+
+				<button id="delete">Delete Message<span id="deleteID"></span></button>
+			</div>
 		</section>
 	</body>
 </html>
